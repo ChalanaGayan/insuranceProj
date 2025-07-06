@@ -4,6 +4,7 @@ import com.chalana.insurance.dto.PolicyRequest;
 import com.chalana.insurance.dto.PolicyResponse;
 import com.chalana.insurance.model.Policy;
 import com.chalana.insurance.repository.PolicyRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class PolicyService {
 
     private final PolicyRepository policyRepository;
 
+    @Transactional
     public PolicyResponse createPolicy(PolicyRequest request, String createdBy) {
         Policy policy = new Policy();
         policy.setName(request.getName());

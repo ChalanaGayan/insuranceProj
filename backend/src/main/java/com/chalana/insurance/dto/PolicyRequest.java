@@ -15,12 +15,18 @@ public class PolicyRequest {
     @NotBlank
     private String type;
 
+    @Positive
+    @Min(1)
     @NotNull
     private BigDecimal coverageAmount;
 
+    @Positive
+    @Min(1)
     @NotNull
     private BigDecimal premium;
 
+    @Positive
+    @Min(1)
     @NotNull
     private Integer durationMonths;
 
