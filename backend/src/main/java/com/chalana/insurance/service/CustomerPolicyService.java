@@ -29,6 +29,11 @@ public class CustomerPolicyService {
         Policy policy = policyRepository.findById(policyID)
                 .orElseThrow(() -> new RuntimeException("Policy not found"));
 
+        // Check if the customer is already enrolled in the policy
+        if (customerPolicyRepository.existsByCustomerAndPolicy(customer, policy)) {
+            throw new RuntimeException("Customer is already enrolled in this policy");
+        }
+
         CustomerPolicy cp = new CustomerPolicy();
         cp.setCustomer(customer);
         cp.setPolicy(policy);
